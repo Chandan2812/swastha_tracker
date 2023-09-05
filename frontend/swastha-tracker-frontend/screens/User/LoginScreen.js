@@ -32,6 +32,8 @@ const UserLogin = ({ navigation }) => {
         AsyncStorage.setItem('userToken', result.token);
         setUser(result.user);
         console.log(result.user)
+        setEmail('')
+        setPassword("")
         alert('Login successfully!');
         navigation.navigate('UserDashboardScreen');
       } else {

@@ -5,10 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 const WelcomeScreen = () => {
     const navigation = useNavigation();
   return (
-    <ImageBackground source={require('../../assets/welcome.png')} style={styles.backgroundImage}>
+    <ImageBackground source={require('../../assets/aa.jpg')} style={styles.backgroundImage}>
+      <Image source={require('../../assets/logo.png')}style={styles.logo}></Image>
       <View style={styles.container}>
-        {/* <Image source={require('../../assets/logo.png')}></Image> */}
-        <Text style={styles.title}>Swastha Tracker</Text>
+        
+        {/* <Text style={styles.title}>Swastha Tracker</Text> */}
 
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LoginScreen')}>
           <Text style={styles.buttonText}>I'm a User</Text>
@@ -23,6 +24,7 @@ const WelcomeScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover', // or 'stretch'
@@ -53,6 +55,10 @@ const styles = StyleSheet.create({
     color: '#48BF91',
     fontSize: 22,
   },
+  logo:{
+    marginTop:30,
+    
+  }
 });
 
 export default WelcomeScreen;
