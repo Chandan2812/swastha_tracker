@@ -11,8 +11,39 @@ const TrainerRegister = ({ navigation }) => {
   const [contactNumber, setContactNumber] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
-    // Handle API call to register the trainer here
+  const handleRegister = async () => {
+    const data = {
+      email,
+      age,
+      gender,
+      specialization,
+      experience,
+      contact_number: contactNumber,
+      bio,
+      password,
+    };
+  
+    try {
+      const response = await fetch('http://192.168.29.28:8000/trainers/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (response.status === 200 || response.status === 201) {
+        navigation.navigate('TrainerLoginScreen');
+        alert('Registered successfully!');
+      } else {
+        alert(result.message || 'Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (

@@ -1,14 +1,48 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUser } from '../../context/UserContext';
+
+
 
 const UserLogin = ({ navigation }) => {
+  const { setUser } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Call API to perform authentication
-    // If successful, navigate to UserDashboard or appropriate screen.
-  };
+  const handleLogin = async () => {
+    const data = {
+      email,
+      password,
+    };
+  
+    try {
+      const response = await fetch('http://192.168.29.28:8000/users/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (response.status === 200 || response.status === 201) {
+        // You can store the token here using AsyncStorage or another method.
+        AsyncStorage.setItem('userToken', result.token);
+        setUser(result.user);
+        console.log(result.user)
+        alert('Login successfully!');
+        navigation.navigate('UserDashboardScreen');
+      } else {
+        alert(result.error || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.log(error)
+      alert('An unexpected error occurred. Please try again.');
+    }
+};
+
 
   return (
     <ImageBackground source={require('../../assets/welcome.png')} style={styles.backgroundImage}>

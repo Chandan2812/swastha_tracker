@@ -11,10 +11,41 @@ const UserRegister = ({ navigation }) => {
   const [contactNumber, setContactNumber] = useState('');
   const [password,setPassword] = useState('');
 
-  const handleRegister = () => {
-    // Call API to perform registration
-    // After successful registration, navigate to appropriate screen.
+  const handleRegister = async () => {
+    const data = {
+      email,
+      name,
+      age,
+      gender,
+      height,
+      weight,
+      contact_number: contactNumber,
+      password,
+    };
+  
+    try {
+      const response = await fetch('http://192.168.29.28:8000/users/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (response.status === 200 || response.status === 201) {
+        navigation.navigate('LoginScreen');
+        alert('Registered successfully!');
+      } else {
+        alert(result.message || 'Registration failed. Please try again.');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('An unexpected error occurred. Please try again.');
+    }
   };
+  
 
   return (
     <ImageBackground source={require('../../assets/welcome.png')} style={styles.backgroundImage}>
