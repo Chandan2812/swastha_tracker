@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9b-1z=214wd-ixg+aidee=$cng5&vaf1rar&!v+9+go+f19cb0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '192.168.29.28']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'trainers',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'swasthaBackend.urls'
@@ -140,3 +142,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+CORS_ALLOW_ALL_ORIGINS = True

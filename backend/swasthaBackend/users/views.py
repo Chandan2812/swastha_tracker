@@ -43,7 +43,11 @@ def user_login(request):
     if user:
         # You can send a success message or even a token if you're using token authentication
         token, _ = Token.objects.get_or_create(user=user)
-        return Response({'success': 'Logged in successfully','token': token.key}, status=200)
+        user_obj = User.objects.get(email=email)
+        user_data = {
+            "name": user_obj.profile.name, 
+        }
+        return Response({'success': 'Logged in successfully','token': token.key,'user': user_data}, status=200)
     else:
         return Response({'error': 'Invalid Credentials'}, status=401)
 
