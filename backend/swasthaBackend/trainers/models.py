@@ -9,6 +9,7 @@ GENDER_CHOICES = [
 
 class TrainerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="trainer_profile")
+    name = models.CharField(max_length=255)
     bio = models.TextField(blank=True, null=True)
     age = models.PositiveIntegerField()
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6)
@@ -17,11 +18,11 @@ class TrainerProfile(models.Model):
     contact_number = models.CharField(max_length=15)
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
 
 
-from django.db import models
+
 from trainers.models import TrainerProfile
 
 class WorkoutPlan(models.Model):

@@ -12,7 +12,7 @@ from .models import TrainerProfile
 def trainer_registration(request):
     email = request.data.get('email')
     password = request.data.get('password')
-    username = email  # using email as the username
+    name = request.data.get('name')
     bio = request.data.get('bio')
     age = request.data.get('age')
     gender = request.data.get('gender')
@@ -23,11 +23,11 @@ def trainer_registration(request):
     if User.objects.filter(email=email).exists():
         return Response({'error': 'Email already registered'}, status=400)
 
-    user = User.objects.create_user(username=username, email=email, password=password)
-    trainer_profile = TrainerProfile(user=user, bio=bio, age=age, gender=gender, specialization=specialization, experience=experience, contact_number=contact_number)
+    user = User.objects.create_user(username=email, email=email, password=password)
+    trainer_profile = TrainerProfile(user=user, name=name, bio=bio, age=age, gender=gender, specialization=specialization, experience=experience, contact_number=contact_number)
     trainer_profile.save()
-
-    return Response({'success': 'Trainer registered successfully'}, status=201)
+    trainer_serializer = TrainerProfileSerializer(trainer_profile)
+    return Response({'success': 'Trainer registered successfully','data':trainer_serializer.data}, status=201)
 
 
 
@@ -45,7 +45,11 @@ def trainer_login(request):
     if user and TrainerProfile.objects.filter(user=user).exists():
         # You can send a success message or even a token if you're using token authentication
         token, _ = Token.objects.get_or_create(user=user)
-        return Response({'success': 'Logged in successfully', 'token': token.key}, status=200)
+        trainer_obj = User.objects.get(email=email)
+        trainer_data = {
+            "name": trainer_obj.trainer_profile.name, 
+        }
+        return Response({'success': 'Logged in successfully', 'token': token.key,'trainer':trainer_data}, status=200)
     else:
         return Response({'error': 'Invalid Credentials'}, status=401)
 

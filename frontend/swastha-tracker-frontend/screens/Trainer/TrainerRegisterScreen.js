@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground,ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 
 const TrainerRegister = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [specialization, setSpecialization] = useState('');
@@ -14,12 +15,13 @@ const TrainerRegister = ({ navigation }) => {
   const handleRegister = async () => {
     const data = {
       email,
+      name,
       age,
       gender,
+      bio,
       specialization,
       experience,
       contact_number: contactNumber,
-      bio,
       password,
     };
   
@@ -34,9 +36,10 @@ const TrainerRegister = ({ navigation }) => {
   
       const result = await response.json();
   
-      if (response.status === 200 || response.status === 201) {
-        navigation.navigate('TrainerLoginScreen');
+      if (response.status === 201) {
         alert('Registered successfully!');
+        navigation.navigate('TrainerLoginScreen');
+        
       } else {
         alert(result.message || 'Registration failed. Please try again.');
       }
@@ -48,10 +51,16 @@ const TrainerRegister = ({ navigation }) => {
 
   return (
     <ImageBackground source={require('../../assets/welcome.png')} style={styles.backgroundImage}>
+      <KeyboardAvoidingView 
+      // behavior={Platform.OS === "ios" ? "padding" : "height"} 
+      // style={styles.container}
+    >
+      <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Text style={styles.title}>Trainer Registration</Text>
         <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
         <TextInput style={styles.input} placeholder="Name" value={name} onChangeText={setName} />
+        <TextInput style={styles.input} placeholder="bio" value={bio} onChangeText={setBio} />
         <TextInput style={styles.input} placeholder="Age" value={age} onChangeText={setAge} />
         <TextInput style={styles.input} placeholder="Gender" value={gender} onChangeText={setGender} />
         <TextInput style={styles.input} placeholder="Specialization" value={specialization} onChangeText={setSpecialization} />
@@ -67,6 +76,8 @@ const TrainerRegister = ({ navigation }) => {
           <Text style={styles.link}>Already have an account? Login</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }

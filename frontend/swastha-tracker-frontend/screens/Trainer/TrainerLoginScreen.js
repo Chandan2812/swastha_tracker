@@ -1,13 +1,43 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTrainer } from '../../context/TrainerContext';
 
 const TrainerLogin = ({ navigation }) => {
+  const { setTrainer } = useTrainer();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Call API to perform authentication
-    // If successful, navigate to TrainerDashboard or appropriate screen.
+  const handleLogin = async () => {
+    const data = {
+      email,
+      password,
+    };
+  
+    try {
+      const response = await fetch('http://192.168.29.28:8000/trainers/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (response.status === 200 || response.status === 201) {
+        AsyncStorage.setItem('trainerToken', result.token);
+        setTrainer(result.trainer);
+        console.log(result.trainer);
+        alert('Login successfully!');
+        navigation.navigate('TrainerDashboardScreen');
+      } else {
+        alert(result.error || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
