@@ -5,7 +5,6 @@ import { useUser } from '../../context/UserContext';
 const UserDashboardScreen = ({ navigation }) => {
   const { user,setUser } = useUser();
   const handleLogout = () => {
-    setUser(null)
     navigation.navigate('LoginScreen');
   };
   return (
@@ -31,7 +30,7 @@ const UserDashboardScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Select a Trainer</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('GoalManagement')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('GoalManagementScreen')}>
           <Text style={styles.buttonText}>Manage Your Goals</Text>
         </TouchableOpacity>
 

@@ -31,7 +31,7 @@ const UserLogin = ({ navigation }) => {
         // You can store the token here using AsyncStorage or another method.
         AsyncStorage.setItem('userToken', result.token);
         setUser(result.user);
-        console.log(result.user)
+        console.log(result)
         setEmail('')
         setPassword("")
         alert('Login successfully!');
