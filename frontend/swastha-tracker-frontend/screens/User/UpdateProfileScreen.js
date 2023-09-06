@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View,Text, TextInput, Button, StyleSheet, ImageBackground, Alert, Image, TouchableOpacity } from 'react-native';
+import { View,Text, TextInput, Button, StyleSheet, ImageBackground, Alert, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useUser } from '../../context/UserContext';
 
@@ -103,7 +103,7 @@ const UpdateProfileScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 </View>
             </View>
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <TextInput
                     value={email}
                     style={styles.input}
@@ -156,7 +156,7 @@ const UpdateProfileScreen = ({ navigation }) => {
                 <TouchableOpacity style={styles.updateButton} onPress={handleUpdate}>
                     <Text style={styles.updateButtonText}>Update Profile</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </ImageBackground>
     );
 };

@@ -10,6 +10,7 @@ import UserDashboardScreen from './screens/User/UserDashboardScreen'
 import UserProfileScreen from './screens/User/UserProfileScreen';
 import UpdateProfileScreen from './screens/User/UpdateProfileScreen';
 import TrainerSelectionScreen from './screens/User/TrainerSelectionScreen';
+import TrainerDetailsScreen from './screens/User/TrainerDetailsScreen';
 import GoalManagementScreen from './screens/User/GoalManagementScreen';
 
 import TrainerLoginScreen from './screens/Trainer/TrainerLoginScreen';
@@ -37,6 +38,7 @@ export default function App() {
             <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
             <Stack.Screen name="UpdateProfileScreen" component={UpdateProfileScreen} />
             <Stack.Screen name="TrainerSelectionScreen" component={TrainerSelectionScreen} />
+            <Stack.Screen name="TrainerDetailsScreen" component={TrainerDetailsScreen} />
             <Stack.Screen name="GoalManagementScreen" component={GoalManagementScreen} />
             <Stack.Screen name="TrainerLoginScreen" component={TrainerLoginScreen} />
             <Stack.Screen name="TrainerRegisterScreen" component={TrainerRegisterScreen} />

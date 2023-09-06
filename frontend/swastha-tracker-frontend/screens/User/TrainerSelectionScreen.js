@@ -9,6 +9,7 @@ const TrainerSelectionScreen = ({ navigation }) => {
   const handleLogout = () => {
     navigation.navigate('LoginScreen');
   };
+  
 
   useEffect(() => {
     const fetchTrainers = async () => {
@@ -34,7 +35,7 @@ const TrainerSelectionScreen = ({ navigation }) => {
   }, []);
 
   const renderTrainer = ({ item }) => (
-    <TouchableOpacity style={styles.trainerCard}>
+    <TouchableOpacity style={styles.trainerCard} onPress={() => navigation.navigate('TrainerDetailsScreen', { trainerId: item.id })}>
       <Image source={require('../../assets/trainer.png')} style={styles.trainerImage} />
       <Text style={styles.trainerName}>{item.name}</Text>
       <Text style={styles.trainerDetail}>Gender: {item.gender}</Text>
