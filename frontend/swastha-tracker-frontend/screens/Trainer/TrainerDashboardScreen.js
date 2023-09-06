@@ -24,16 +24,16 @@ const TrainerDashboardScreen = ({ navigation }) => {
                 <Text style={styles.buttonText}>Profile Overview</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ClientManagement')}>
-                <Text style={styles.buttonText}>Manage Your Clients</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WorkoutManagement')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WorkoutManagementScreen')}>
                 <Text style={styles.buttonText}>Manage Workouts</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NutritionManagement')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NutritionManagementScreen')}>
                 <Text style={styles.buttonText}>Manage Nutrition Plans</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ClientManagement')}>
+                <Text style={styles.buttonText}>Manage Your Clients</Text>
             </TouchableOpacity>
 
         </ScrollView>

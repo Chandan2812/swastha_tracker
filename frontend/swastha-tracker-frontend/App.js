@@ -17,6 +17,8 @@ import TrainerRegisterScreen from './screens/Trainer/TrainerRegisterScreen'
 import TrainerDashboardScreen from './screens/Trainer/TrainerDashboardScreen'
 import TrainerProfileScreen from './screens/Trainer/TrainerProfileScreen';
 import UpdateTrainerProfileScreen from './screens/Trainer/UpdateTrainerProfileScreen';
+import WorkoutManagementScreen from './screens/Trainer/WorkoutManagementScreen';
+import NutritionManagementScreen from './screens/Trainer/NutritionManagementScreen';
 
 import { TrainerProvider } from './context/TrainerContext';
 
@@ -41,6 +43,8 @@ export default function App() {
             <Stack.Screen name="TrainerDashboardScreen" component={TrainerDashboardScreen} />
             <Stack.Screen name="TrainerProfileScreen" component={TrainerProfileScreen} />
             <Stack.Screen name="UpdateTrainerProfileScreen" component={UpdateTrainerProfileScreen} />
+            <Stack.Screen name="WorkoutManagementScreen" component={WorkoutManagementScreen} />
+            <Stack.Screen name="NutritionManagementScreen" component={NutritionManagementScreen} />
 
           </Stack.Navigator>
         </NavigationContainer>
