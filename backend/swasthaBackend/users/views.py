@@ -41,11 +41,12 @@ def user_login(request):
 
     user = authenticate(username=email, password=password)
     if user:
-        # You can send a success message or even a token if you're using token authentication
+        
         token, _ = Token.objects.get_or_create(user=user)
         user_obj = User.objects.get(email=email)
         user_data = {
             "name": user_obj.profile.name, 
+            "id":user_obj.profile.id
         }
         return Response({'success': 'Logged in successfully','token': token.key,'user': user_data}, status=200)
     else:
