@@ -48,6 +48,7 @@ def trainer_login(request):
         trainer_obj = User.objects.get(email=email)
         trainer_data = {
             "name": trainer_obj.trainer_profile.name, 
+            "id":trainer_obj.trainer_profile.id
         }
         return Response({'success': 'Logged in successfully', 'token': token.key,'trainer':trainer_data}, status=200)
     else:
