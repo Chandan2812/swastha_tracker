@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9b-1z=214wd-ixg+aidee=$cng5&vaf1rar&!v+9+go+f19cb0'
+# SECRET_KEY = 'django-insecure-9b-1z=214wd-ixg+aidee=$cng5&vaf1rar&!v+9+go+f19cb0'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower == "true"
 
-ALLOWED_HOSTS = ['*', '192.168.29.28']
+# ALLOWED_HOSTS = ['*', '192.168.29.28']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -52,7 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'swasthaBackend.urls'
@@ -76,23 +81,33 @@ TEMPLATES = [
 WSGI_APPLICATION = 'swasthaBackend.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'Tracker',
+#         'USER': 'chandan',
+#         'PASSWORD': 'Chandan123',   
+#         'HOST': 'localhost',                
+#         'PORT': '3306',                     
+#         'OPTIONS': {
+#             'charset': 'utf8mb4',
+#         },
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Tracker',
-        'USER': 'chandan',
-        'PASSWORD': 'Chandan123',   
-        'HOST': 'localhost',                
-        'PORT': '3306',                     
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
+    "default":{
+        "ENGINE":'django.db.backends.sqlite3',
+        "NAME":BASE_DIR/"db.sqlite3",
     }
 }
 
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default']=dj_database_url.parse(database_url)
 
 
 # Password validation
@@ -129,7 +144,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
