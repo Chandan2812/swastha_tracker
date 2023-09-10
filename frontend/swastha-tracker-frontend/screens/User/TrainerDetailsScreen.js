@@ -18,7 +18,7 @@ const TrainerDetailsScreen = ({ route, navigation }) => {
       const token = await AsyncStorage.getItem('userToken');
 
       try {
-        const response = await fetch(`http://192.168.29.28:8000/users/trainers/${trainerId}/`, {
+        const response = await fetch(`https://swastha-tracker-app.onrender.com/users/trainers/${trainerId}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const TrainerDetailsScreen = ({ route, navigation }) => {
     const token = await AsyncStorage.getItem('userToken');
   
     try {
-      const response = await fetch('http://192.168.29.28:8000/users/select_workout/', {
+      const response = await fetch('https://swastha-tracker-app.onrender.com/users/select_workout/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const TrainerDetailsScreen = ({ route, navigation }) => {
     const token = await AsyncStorage.getItem('userToken');
   
     try {
-      const response = await fetch('http://192.168.29.28:8000/users/select_nutrition/', {
+      const response = await fetch('https://swastha-tracker-app.onrender.com/users/select_nutrition/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

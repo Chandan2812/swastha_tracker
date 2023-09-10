@@ -21,7 +21,7 @@ const UpdateProfileScreen = ({ navigation }) => {
           const token = await AsyncStorage.getItem('userToken');
           
           try {
-            const response = await fetch('http://192.168.29.28:8000/users/profile/', {
+            const response = await fetch('https://swastha-tracker-app.onrender.com/users/profile/', {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const UpdateProfileScreen = ({ navigation }) => {
         const token = await AsyncStorage.getItem('userToken');
 
         try {
-            const response = await fetch('http://192.168.29.28:8000/users/profile/update/', {
+            const response = await fetch('https://swastha-tracker-app.onrender.com/users/profile/update/', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

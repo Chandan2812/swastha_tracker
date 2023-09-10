@@ -23,7 +23,7 @@ const GoalManagementScreen = ({ navigation }) => {
         const token = await AsyncStorage.getItem('userToken');
   
         try {
-          const response = await fetch('http://192.168.29.28:8000/users/goals/', {
+          const response = await fetch('https://swastha-tracker-app.onrender.com/users/goals/', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const GoalManagementScreen = ({ navigation }) => {
     try {
         const token = await AsyncStorage.getItem('userToken');
 
-      const response = await fetch('http://192.168.29.28:8000/users/goals/create/', {
+      const response = await fetch('https://swastha-tracker-app.onrender.com/users/goals/create/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const GoalManagementScreen = ({ navigation }) => {
     };
   
     try {
-      const response = await fetch(`http://192.168.29.28:8000/users/goals/${currentEditingGoal.id}/update/`, {
+      const response = await fetch(`https://swastha-tracker-app.onrender.com/users/goals/${currentEditingGoal.id}/update/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

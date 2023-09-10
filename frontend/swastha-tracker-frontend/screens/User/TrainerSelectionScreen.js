@@ -15,7 +15,7 @@ const TrainerSelectionScreen = ({ navigation }) => {
     const fetchTrainers = async () => {
       try {
         const token = await AsyncStorage.getItem('userToken');
-        const response = await fetch('http://192.168.29.28:8000/users/trainers/', {
+        const response = await fetch('https://swastha-tracker-app.onrender.com/users/trainers/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
