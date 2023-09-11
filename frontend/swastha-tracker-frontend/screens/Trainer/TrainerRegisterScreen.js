@@ -26,7 +26,7 @@ const TrainerRegister = ({ navigation }) => {
     };
   
     try {
-      const response = await fetch('http://192.168.29.28:8000/trainers/register/', {
+      const response = await fetch('https://swastha-tracker-app.onrender.com/trainers/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

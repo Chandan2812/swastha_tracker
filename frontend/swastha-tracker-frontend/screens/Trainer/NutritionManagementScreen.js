@@ -28,7 +28,7 @@ const NutritionManagementScreen = ({ navigation }) => {
         const token = await AsyncStorage.getItem('trainerToken');
 
         try {
-            const response = await fetch('http://192.168.29.28:8000/trainers/nutrition/', {
+            const response = await fetch('https://swastha-tracker-app.onrender.com/trainers/nutrition/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const NutritionManagementScreen = ({ navigation }) => {
         };
 
         try {
-            const response = await fetch('http://192.168.29.28:8000/trainers/nutrition/create/', {
+            const response = await fetch('https://swastha-tracker-app.onrender.com/trainers/nutrition/create/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

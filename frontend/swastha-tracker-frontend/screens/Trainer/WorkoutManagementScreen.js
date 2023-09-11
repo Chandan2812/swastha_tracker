@@ -28,7 +28,7 @@ const WorkoutManagementScreen = ({ navigation }) => {
         const token = await AsyncStorage.getItem('trainerToken'); 
 
         try {
-            const response = await fetch('http://192.168.29.28:8000/trainers/workouts/', {
+            const response = await fetch('https://swastha-tracker-app.onrender.com/trainers/workouts/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
