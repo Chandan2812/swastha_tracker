@@ -33,6 +33,13 @@
       "eas": {
         "projectId": "17067c46-00cc-4dca-a684-0854aa75e69d"
       }
-    }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/17067c46-00cc-4dca-a684-0854aa75e69d"
+    },
+    "owner": "chandanpms"
   }
 }
